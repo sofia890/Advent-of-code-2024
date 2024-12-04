@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 1 - Historian Hysteria"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 2 - Red-Nosed Reports", "Day 2 - Red-Nosed Reports\Day 2 - Red-Nosed Reports.csproj", "{77C5BE2D-4FAB-41D2-A5ED-70F8C77AC2ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 3 - Mull It Over", "Day 3 - Mull It Over\Day 3 - Mull It Over.csproj", "{729A7E98-8D13-4EB0-9B6D-930CB3483C2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 4 - Ceres Search", "Day 4 - Ceres Search\Day 4 - Ceres Search.csproj", "{CD8B64DA-144B-44EB-B33B-0B553A240DA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{77C5BE2D-4FAB-41D2-A5ED-70F8C77AC2ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77C5BE2D-4FAB-41D2-A5ED-70F8C77AC2ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77C5BE2D-4FAB-41D2-A5ED-70F8C77AC2ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{729A7E98-8D13-4EB0-9B6D-930CB3483C2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{729A7E98-8D13-4EB0-9B6D-930CB3483C2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{729A7E98-8D13-4EB0-9B6D-930CB3483C2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{729A7E98-8D13-4EB0-9B6D-930CB3483C2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD8B64DA-144B-44EB-B33B-0B553A240DA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD8B64DA-144B-44EB-B33B-0B553A240DA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD8B64DA-144B-44EB-B33B-0B553A240DA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD8B64DA-144B-44EB-B33B-0B553A240DA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
