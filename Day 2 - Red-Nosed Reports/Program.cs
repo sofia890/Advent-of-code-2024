@@ -1117,7 +1117,7 @@ int GetNrofDampenedSafeReports(List<int[]> reports)
 
     foreach (int[] report in reports)
     {
-        if (IsReportSafe(report, NO_INDEX))
+        if (IsReportDampenedSafe(report, NO_INDEX))
         {
             nrofSafeReports++;
         }
