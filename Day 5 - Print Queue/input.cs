@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Day_3___Mull_It_Over
+﻿namespace Day_5___Print_Queue
 {
     public static class Input
     {
-
         public static (int[,], List<int[]>) GetData()
         {
-
             var orderRules = new int[,]
             {
                 {96, 89},
@@ -1372,7 +1364,6 @@ namespace Day_3___Mull_It_Over
 
             return (orderRules, updates);
         }
-
         public static (int[,], List<int[]>) GeTrainingData()
         {
             var orderRules = new int[,]
@@ -1409,7 +1400,6 @@ namespace Day_3___Mull_It_Over
                 new int[] { 61,13,29 },
                 new int[] { 97,13,75,29,47 },
             };
-
 
             return (orderRules, updates);
         }
