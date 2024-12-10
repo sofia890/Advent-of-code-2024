@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace Day_8___Resonant_Collinearity
+namespace AdventLibrary
 {
-    internal class Matrix<T> : IEnumerable<(int x, int y, T value)>
+    public class Matrix<T> : IEnumerable<(int x, int y, T value)>
     {
         #region Properties
         public int Width
@@ -39,17 +35,24 @@ namespace Day_8___Resonant_Collinearity
             data = new T[width, height];
             Array.Clear(data, 0, data.Length);
         }
-        #endregion IEnumerable
+        #endregion
 
-        #region
+        #region IEnumerator
+        public static IEnumerable<(int x, int y)> Range(int width, int height)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    yield return (x, y);
+                }
+            }
+        }
         public IEnumerator<(int x, int y, T value)> GetEnumerator()
         {
-            for (int x = 0; x < Width; x++)
+            foreach (var cell in Range(Width, Height))
             {
-                for (int y = 0; y < Height; y++)
-                {
-                    yield return (x, y, data[x, y]);
-                }
+                yield return (cell.x, cell.y, data[cell.x, cell.y]);
             }
         }
         IEnumerator IEnumerable.GetEnumerator()

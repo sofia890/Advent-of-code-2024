@@ -1,6 +1,7 @@
 ﻿
 
 using Day_8___Resonant_Collinearity;
+using AdventLibrary;
 
 void ProcessAntennaAntinodes(Matrix<bool> antinodeMap,int x, int y, int diff_x, int diff_y, bool considerResonanHarmonics)
 {
