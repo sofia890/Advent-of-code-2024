@@ -1,8 +1,29 @@
 ﻿using System.Collections;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace AdventLibrary
 {
+    public static class MatrixParser
+    {
+        public static Matrix<char> Parse(string value)
+        {
+            string[] lines = value.Split("\r\n");
+
+            int width = lines[0].Length;
+            int height = lines.Length;
+            var data = new char[width, height];
+
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    data[x, y] = lines[y][x];
+                }
+            }
+
+            return new(data);
+        }
+    }
+
     public class Matrix<T> : IEnumerable<(int x, int y, T value)>
     {
         #region Properties
@@ -50,9 +71,9 @@ namespace AdventLibrary
         }
         public IEnumerator<(int x, int y, T value)> GetEnumerator()
         {
-            foreach (var cell in Range(Width, Height))
+            foreach (var (x, y) in Range(Width, Height))
             {
-                yield return (cell.x, cell.y, data[cell.x, cell.y]);
+                yield return (x, y, data[x, y]);
             }
         }
         IEnumerator IEnumerable.GetEnumerator()
@@ -65,7 +86,7 @@ namespace AdventLibrary
         public T this[int x, int y]
         {
             get
-            { 
+            {
                 return data[x, y];
             }
             set
@@ -102,6 +123,47 @@ namespace AdventLibrary
         {
             return 0 <= x && x < Width &&
                    0 <= y && y < Height;
+        }
+        #endregion
+        public IEnumerable<MatrixRow<T>> AsRows()
+        {
+            for (int y = 0; y < Height; y++)
+            {
+                yield return new MatrixRow<T>(this, y);
+            }
+        }
+    }
+
+    public class MatrixRow<T> : IEnumerable<(int x, int y, T value)>
+    {
+        #region Properties
+        public int Y
+        {
+            get;
+            private set;
+        }
+        #endregion
+
+        Matrix<T> data;
+
+        #region Constructors
+        public MatrixRow(Matrix<T> data, int y)
+        {
+            this.data = data;
+            Y = y;
+        }
+        #endregion
+        #region IEnumerator
+        public IEnumerator<(int x, int y, T value)> GetEnumerator()
+        {
+            for (int x = 0; x < data.Width; x++)
+            {
+                yield return (x, Y, data[x, Y]);
+            }
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
         }
         #endregion
     }
