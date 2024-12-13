@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 11 - Plutonian Pebbles"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 12 - Garden Groups", "Day 12 - Garden Groups\Day 12 - Garden Groups.csproj", "{22EC295E-1CCA-4380-B70B-3877E268620D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 13 - Claw Contraption", "Day 13 - Claw Contraption\Day 13 - Claw Contraption.csproj", "{011DDA14-1D39-4C93-B083-B4903425DF64}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{22EC295E-1CCA-4380-B70B-3877E268620D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22EC295E-1CCA-4380-B70B-3877E268620D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22EC295E-1CCA-4380-B70B-3877E268620D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{011DDA14-1D39-4C93-B083-B4903425DF64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{011DDA14-1D39-4C93-B083-B4903425DF64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{011DDA14-1D39-4C93-B083-B4903425DF64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{011DDA14-1D39-4C93-B083-B4903425DF64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
