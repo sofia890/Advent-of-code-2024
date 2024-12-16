@@ -1,15 +1,10 @@
 ﻿using Day_10___Hoof_It;
 using AdventLibrary;
+using Move = (int x, int y, int rotation, int cost);
+using Position = (int x, int y);
+using Trek = (int x, int y, int direction, int score, System.Collections.Generic.List<(int x, int y)> trail);
 
 const int MAX_N_STEPS = 9;
-
-IEnumerable<(int x, int y)> PossibleMovements()
-{
-    yield return ( 0, -1);
-    yield return ( 1,  0);
-    yield return ( 0,  1);
-    yield return (-1,  0);
-}
 
 int CheckTrails(Matrix<byte> matrix, int originX, int originY, bool distinctPaths)
 {
@@ -24,7 +19,7 @@ int CheckTrails(Matrix<byte> matrix, int originX, int originY, bool distinctPath
         {
             var position = workQueue.Dequeue();
 
-            foreach (var movement in PossibleMovements())
+            foreach (var movement in GridMovement.PossibleMovements())
             {
                 var nextX = position.x + movement.x;
                 var nextY = position.y + movement.y;
