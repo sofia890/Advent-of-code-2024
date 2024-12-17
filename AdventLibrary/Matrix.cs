@@ -94,6 +94,17 @@ namespace AdventLibrary
                 data[x, y] = value;
             }
         }
+        public T this[(int x, int y) position]
+        {
+            get
+            {
+                return data[position.x, position.y];
+            }
+            set
+            {
+                data[position.x, position.y] = value;
+            }
+        }
         #endregion
 
         #region ToString

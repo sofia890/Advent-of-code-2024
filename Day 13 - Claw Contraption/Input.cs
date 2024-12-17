@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using AdventLibrary;
+using System.Numerics;
 
 namespace Day_13___Claw_Contraption
 {
@@ -8,17 +9,6 @@ namespace Day_13___Claw_Contraption
         public record Position(long x, long y);
         public record StepSize(long x, long y);
         public record Entry(Position goal, StepSize a, StepSize b);
-        static Func<string, long> GetIntParser(int offset)
-        {
-            return (string value) =>
-            {
-                return long.Parse(value[offset..]);
-            };
-        }
-        static long[] ToIntegerArray(string value, int offset)
-        {
-            return value.Split(", ").Select(GetIntParser(offset)).ToArray();
-        }
         static IEnumerable<Entry> Parse(string data)
         {
             var list = new List<Entry>();
@@ -34,9 +24,9 @@ namespace Day_13___Claw_Contraption
 
             foreach (string[] lines in machines)
             {
-                var movmentA = ToIntegerArray(lines[0][10..], 1);
-                var movementB = ToIntegerArray(lines[1][10..], 1);
-                var goal = ToIntegerArray(lines[2][7..], 2);
+                var movmentA = Parser.ToIntegerArray(lines[0][10..], 1);
+                var movementB = Parser.ToIntegerArray(lines[1][10..], 1);
+                var goal = Parser.ToIntegerArray(lines[2][7..], 2);
 
                 list.Add(new Entry(new Position(goal[0], goal[1]),
                                    new StepSize(movmentA[0], movmentA[1]),
