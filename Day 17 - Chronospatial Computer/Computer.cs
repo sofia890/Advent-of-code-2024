@@ -149,7 +149,7 @@ namespace Day_17___Chronospatial_Computer
             }
         }
 
-        public int ReverseRun()
+        public long ReverseRun()
         {
             var matches = new List<long>();
 
@@ -191,12 +191,7 @@ namespace Day_17___Chronospatial_Computer
                 }
             }
 
-            var validRegisterValues = matches.Order()
-                                             .Select(x => x.ToString())
-                                             .Aggregate("", (a, b) => $"{a}, {b}");
-
-            Console.WriteLine($"Part Two: Register A values that cause the program to output itself are: {validRegisterValues[1..]}.\n");
-            return 1;
+            return matches.Order().First();
         }
     }
 }
