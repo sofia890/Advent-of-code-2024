@@ -1,6 +1,6 @@
 ﻿using AdventLibrary;
 using Day_18___RAM_Run;
-
+using System.Numerics;
 using Placement = (int x, int y, int steps, System.Collections.Generic.List<AdventLibrary.Position> path);
 
 const char WALL = '#';
@@ -67,6 +67,13 @@ void PlaceFallenBytes(Matrix<char> matrix, IList<Position> bytes, int index = 0,
         matrix[bytes[i]] = WALL;
     }
 }
+bool CheckUoTo(IList<Position> bytes, int width, int height, int nrofFallenBytes)
+{
+    var matrix = new Matrix<char>(width, height);
+    PlaceFallenBytes(matrix, bytes, 0, nrofFallenBytes);
+
+    return WalkGrid(matrix, 0, 0).Any();
+}
 void PartOne(IList<Position> bytes, int width, int height, int nrofFallenBytes)
 {
     var matrix = new Matrix<char>(width, height);
@@ -85,23 +92,18 @@ void PartOne(IList<Position> bytes, int width, int height, int nrofFallenBytes)
 }
 void PartTwo(IList<Position> bytes, int width, int height, int nrofFallenBytes)
 {
-    int currentByte = 0;
-
-    var matrix = new Matrix<char>(width, height);
-
     //
     // Test byte placements
     //
-    while (WalkGrid(matrix, 0, 0).Any() &&
-           currentByte < bytes.Count)
-    {
-        PlaceFallenBytes(matrix, bytes, currentByte++, 1);
-    }
+    var nrofPlacedBytes = Search<int>.FindThreshold(0, bytes.Count, x => !CheckUoTo(bytes, width, height, x));
 
     //
     // Print matrix
     //
-    var lastPlacedByte = bytes[currentByte - 1];
+    var matrix = new Matrix<char>(width, height);
+    PlaceFallenBytes(matrix, bytes, 0, nrofPlacedBytes);
+
+    var lastPlacedByte = bytes[nrofPlacedBytes - 1];
     matrix[lastPlacedByte] = LAST_BYTE;
 
     Console.WriteLine(matrix.ToString(x => (x == 0) ? FREE.ToString() : x.ToString()));
