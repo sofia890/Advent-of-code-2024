@@ -24,9 +24,9 @@ namespace Day_13___Claw_Contraption
 
             foreach (string[] lines in machines)
             {
-                var movmentA = Parser.ToIntegerArray(lines[0][10..], 1);
-                var movementB = Parser.ToIntegerArray(lines[1][10..], 1);
-                var goal = Parser.ToIntegerArray(lines[2][7..], 2);
+                var movmentA = Parser.ToIntegerArray<long>(lines[0][10..], 1);
+                var movementB = Parser.ToIntegerArray<long>(lines[1][10..], 1);
+                var goal = Parser.ToIntegerArray<long>(lines[2][7..], 2);
 
                 list.Add(new Entry(new Position(goal[0], goal[1]),
                                    new StepSize(movmentA[0], movmentA[1]),

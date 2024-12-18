@@ -2,6 +2,7 @@
 
 namespace AdventLibrary
 {
+    public record Position(int x, int y);
     public static class MatrixParser
     {
         public static Matrix<char> Parse(string value)
@@ -95,6 +96,17 @@ namespace AdventLibrary
             }
         }
         public T this[(int x, int y) position]
+        {
+            get
+            {
+                return data[position.x, position.y];
+            }
+            set
+            {
+                data[position.x, position.y] = value;
+            }
+        }
+        public T this[Position position]
         {
             get
             {

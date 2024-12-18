@@ -73,6 +73,6 @@ void PartTwo(Matrix<char> antennaMap)
     Console.WriteLine($"Part two -- Number of antinodes when harmonics are considered are {CountAntinodes(antennaMap, true)}.");
 }
 
-var antennaMap = new Matrix<char>(Input.GetData());
+var antennaMap = Input.GetData();
 PartOne(antennaMap);
 PartTwo(antennaMap);

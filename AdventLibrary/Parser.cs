@@ -15,7 +15,7 @@ namespace AdventLibrary
                 return T.Parse(value[offset..], null);
             };
         }
-        public static T[] ToIntegerArray<T>(string value, int offset, string splitOn = ", ") where T : IParsable<T>
+        public static T[] ToIntegerArray<T>(string value, int offset = 0, string splitOn = ", ") where T : IParsable<T>
         {
             return value.Split(splitOn).Select(GetIntParser<T>(offset)).ToArray();
         }
