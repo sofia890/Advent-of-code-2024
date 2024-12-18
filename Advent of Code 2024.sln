@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 16 - Reindeer Maze", "D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 17 - Chronospatial Computer", "Day 17 - Chronospatial Computer\Day 17 - Chronospatial Computer.csproj", "{0ECD6129-5647-407C-988A-CA3B2E2711C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 18 - RAM Run", "Day 18 - RAM Run\Day 18 - RAM Run.csproj", "{45C4E604-5AD9-4B9D-9E77-77F0CD07AA86}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,10 @@ Global
 		{0ECD6129-5647-407C-988A-CA3B2E2711C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0ECD6129-5647-407C-988A-CA3B2E2711C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0ECD6129-5647-407C-988A-CA3B2E2711C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45C4E604-5AD9-4B9D-9E77-77F0CD07AA86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45C4E604-5AD9-4B9D-9E77-77F0CD07AA86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45C4E604-5AD9-4B9D-9E77-77F0CD07AA86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45C4E604-5AD9-4B9D-9E77-77F0CD07AA86}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
