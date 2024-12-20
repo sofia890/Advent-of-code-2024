@@ -2,7 +2,17 @@
 
 namespace AdventLibrary
 {
-    public record Position(int x, int y);
+    public record Position(int x, int y)
+    {
+        public static Position operator +(Position a, Position b)
+        {
+            return new(a.x + b.x, a.y + b.y);
+        }
+        public static Position operator -(Position a, Position b)
+        {
+            return new(a.x - b.x, a.y - b.y);
+        }
+    }
     public static class MatrixParser
     {
         public static Matrix<char> Parse(string value)
@@ -146,6 +156,10 @@ namespace AdventLibrary
         {
             return 0 <= x && x < Width &&
                    0 <= y && y < Height;
+        }
+        public bool NotOutOfBounds(Position position)
+        {
+            return NotOutOfBounds(position.x, position.y);
         }
         #endregion
         public IEnumerable<MatrixRow<T>> AsRows()
