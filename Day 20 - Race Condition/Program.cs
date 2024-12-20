@@ -1,7 +1,7 @@
 ﻿using AdventLibrary;
 using Day_20___Race_Condition;
 
-using ShortcutInfo = System.Collections.Generic.IEnumerable<(System.Collections.Generic.IEnumerable<AdventLibrary.Position> path, AdventLibrary.Position shortcutStart, AdventLibrary.Position shortcutEnd)>;
+using ShortcutInfo = System.Collections.Generic.IEnumerable<(int savedSteps, AdventLibrary.Position shortcutStart, AdventLibrary.Position shortcutEnd)>;
 
 const char WALL = '#';
 const char FREE = '.';
@@ -74,125 +74,18 @@ ShortcutInfo GetShortcuts(Matrix<char> matrix, List<Position> originalPath, int 
 {
     var startPosition = originalPath[pathIndex];
 
-    Queue<(Position position, int remainingSteps, List<Position> path)> workQueue = new();
-    workQueue.Enqueue((startPosition, nrOfCheatSteps, []));
-
-    var visited = new HashSet<Position>
+    for (int i = pathIndex; i < originalPath.Count; i++)
     {
-        startPosition
-    };
+        var currentPosition = originalPath[i];
+        var distance = Math.Abs(startPosition.x - currentPosition.x) +
+                       Math.Abs(startPosition.y - currentPosition.y);
 
-    var handledEndpoints = new HashSet<int>();
-
-    while (workQueue.Count > 0)
-    {
-        var currentShortcut = workQueue.Dequeue();
-
-        foreach (var step in GridMovement.PossibleMovements())
+        if (distance <= nrOfCheatSteps &&
+            (i - pathIndex) > distance)
         {
-            int remainingSteps = currentShortcut.remainingSteps - 1;
-
-            var positionAfterStep = currentShortcut.position + step;
-
-            if (visited.Contains(positionAfterStep))
-            {
-                continue;
-            }
-            else
-            {
-                visited.Add(positionAfterStep);
-            }
-
-            var indexOfConnectionPoint = originalPath.IndexOf(positionAfterStep);
-
-            if (IndexesSkipAtLeastOne(pathIndex, indexOfConnectionPoint))
-            {
-                handledEndpoints.Add(indexOfConnectionPoint);
-
-                yield return (originalPath[..(pathIndex + 1)].Union(currentShortcut.path)
-                                                             .Union(originalPath[indexOfConnectionPoint..]),
-                              originalPath[pathIndex],
-                              originalPath[indexOfConnectionPoint]);
-            }
-            else if (remainingSteps > 0 &&
-                     matrix.NotOutOfBounds(positionAfterStep))
-            {
-                var newShortcutPath = currentShortcut.path.ToList();
-                newShortcutPath.Add(positionAfterStep);
-
-                workQueue.Enqueue((positionAfterStep, remainingSteps, newShortcutPath));
-            }
-        }
-    }
-}
-ShortcutInfo GetShortcuts2(Matrix<char> matrix, List<Position> originalPath, int nrOfCheatSteps, int pathIndex)
-{
-    var startPosition = originalPath[pathIndex];
-
-    Queue<(Position position, int remainingSteps, List<Position> path)> workQueue = new();
-    workQueue.Enqueue((startPosition, nrOfCheatSteps, []));
-
-    var visited = new HashSet<Position>
-    {
-        startPosition
-    };
-    
-    var used = new HashSet<Position>
-    {
-        startPosition
-    };
-
-    while (workQueue.Count > 0)
-    {
-        var currentShortcut = workQueue.Dequeue();
-
-        foreach (var step in GridMovement.PossibleMovements())
-        {
-            var positionAfterStep = currentShortcut.position + step;
-
-            var indexOfConnectionPoint = originalPath.IndexOf(positionAfterStep);
-
-            if (currentShortcut.remainingSteps == nrOfCheatSteps &&
-                indexOfConnectionPoint >= 0)
-            {
-                continue;
-            }
-
-            if (indexOfConnectionPoint <= pathIndex &&
-                indexOfConnectionPoint >= 0)
-            {
-                continue;
-            }
-
-            if (visited.Contains(positionAfterStep))
-            {
-                continue;
-            }
-            else
-            {
-                visited.Add(positionAfterStep);
-            }
-
-
-            if (IndexesSkipAtLeastOne(pathIndex, indexOfConnectionPoint))
-            {
-                yield return (originalPath[..(pathIndex + 1)].Union(currentShortcut.path)
-                                                             .Union(originalPath[indexOfConnectionPoint..]),
-                              originalPath[pathIndex],
-                              originalPath[indexOfConnectionPoint]);
-            }
-
-            int remainingSteps = currentShortcut.remainingSteps - 1;
-
-            if (remainingSteps > 0 &&
-                matrix.NotOutOfBounds(positionAfterStep) &&
-                (indexOfConnectionPoint == -1 || pathIndex < indexOfConnectionPoint))
-            {
-                var newShortcutPath = currentShortcut.path.ToList();
-                newShortcutPath.Add(positionAfterStep);
-
-                workQueue.Enqueue((positionAfterStep, remainingSteps, newShortcutPath));
-            }
+            yield return (i - pathIndex - distance,
+                          startPosition,
+                          currentPosition);
         }
     }
 }
@@ -200,12 +93,10 @@ int FindShortcuts(Matrix<char> matrix, int nrOfCheatSteps, int minSavedSteps)
 {
     var start = matrix.First(x => x.value == START);
     var path = FindPath(matrix, start.x, start.y);
-    var pathLength = path.Count();
-    var shortcutData = path.AsParallel()
-                           .SelectMany((x, index) => GetShortcuts2(matrix, path, nrOfCheatSteps, index))
-                           .Select(x => (savedSteps: pathLength - x.path.Count(), x.shortcutStart, x.shortcutEnd))
+    var shortcutData = path.SelectMany((x, index) => GetShortcuts(matrix, path, nrOfCheatSteps, index))
+                           .Select(x => (x.savedSteps, x.shortcutStart, x.shortcutEnd))
                            .OrderByDescending(x => x.savedSteps)
-                           .DistinctBy(x => $"{x.shortcutStart}-{x.shortcutEnd}")
+                           .DistinctBy(x => $"{x.shortcutStart}{x.shortcutEnd}")
                            .GroupBy(x => x.savedSteps)
                            .Select(x => (savedSteps: x.Key, count: x.Count()))
                            .OrderBy(x => x.savedSteps)
@@ -233,6 +124,6 @@ void PartTwo(Matrix<char> matrix, int nrOfCheatSteps, int minSavedSteps)
     Console.WriteLine($"Part Two: {nrOfShortcuts} shortcuts save at least {minSavedSteps} steps.\n");
 }
 
-(var matrix, var nrOfCheatStepsA, var nrOfCheatStepsB, var minSavedStepsA, var minSavedStepsB) = Input.GetTrainingData();
-PartOne(matrix, nrOfCheatStepsA, minSavedStepsA);
+(var matrix, var nrOfCheatStepsA, var nrOfCheatStepsB, var minSavedStepsA, var minSavedStepsB) = Input.GetData();
+//PartOne(matrix, nrOfCheatStepsA, minSavedStepsA);
 PartTwo(matrix, nrOfCheatStepsB, minSavedStepsB);
