@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 19 - Linen Layout", "Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 20 - Race Condition", "Day 20 - Race Condition\Day 20 - Race Condition.csproj", "{41266F45-D18C-42C3-B6F8-FD5AFA17E867}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 23 - LAN Party", "Day 23 - LAN Party\Day 23 - LAN Party.csproj", "{B9046DA6-95DC-457A-B2D4-57406FE1CEAF}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 21 - Keypad Conundrum", "Day 21 - Keypad Conundrum\Day 21 - Keypad Conundrum.csproj", "{E545A4F4-0AC0-494E-9599-3316A7BA4D44}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 22 - Monkey Market", "Day 22 - Monkey Market\Day 22 - Monkey Market.csproj", "{60E9467D-2EE5-4ABD-9A41-CB710938A4E6}"
@@ -129,6 +131,10 @@ Global
 		{41266F45-D18C-42C3-B6F8-FD5AFA17E867}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41266F45-D18C-42C3-B6F8-FD5AFA17E867}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41266F45-D18C-42C3-B6F8-FD5AFA17E867}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9046DA6-95DC-457A-B2D4-57406FE1CEAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9046DA6-95DC-457A-B2D4-57406FE1CEAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9046DA6-95DC-457A-B2D4-57406FE1CEAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9046DA6-95DC-457A-B2D4-57406FE1CEAF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E545A4F4-0AC0-494E-9599-3316A7BA4D44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E545A4F4-0AC0-494E-9599-3316A7BA4D44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E545A4F4-0AC0-494E-9599-3316A7BA4D44}.Release|Any CPU.ActiveCfg = Release|Any CPU
