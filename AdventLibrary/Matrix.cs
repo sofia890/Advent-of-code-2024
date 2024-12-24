@@ -12,6 +12,10 @@ namespace AdventLibrary
         {
             return new(a.x - b.x, a.y - b.y);
         }
+        public static Position operator -(Position a, (int x, int y) b)
+        {
+            return new(a.x - b.x, a.y - b.y);
+        }
     }
     public static class MatrixParser
     {
@@ -168,6 +172,16 @@ namespace AdventLibrary
             {
                 yield return new MatrixRow<T>(this, y);
             }
+        }
+        public static int GetDistance(Position a, Position b)
+        {
+            return Math.Abs(a.x - b.x) +
+                   Math.Abs(a.y - b.y);
+        }
+        public static int GetDistance((int x, int y, T _) a, Position b)
+        {
+            return Math.Abs(a.x - b.x) +
+                   Math.Abs(a.y - b.y);
         }
     }
 

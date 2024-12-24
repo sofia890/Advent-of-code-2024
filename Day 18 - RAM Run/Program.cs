@@ -1,6 +1,5 @@
 ﻿using AdventLibrary;
 using Day_18___RAM_Run;
-using System.Numerics;
 using Placement = (int x, int y, int steps, System.Collections.Generic.List<AdventLibrary.Position> path);
 
 const char WALL = '#';
