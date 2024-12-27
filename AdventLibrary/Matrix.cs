@@ -2,19 +2,33 @@
 
 namespace AdventLibrary
 {
-    public record Position(int x, int y)
+    public class Position(int x, int y)
     {
+        public int X
+        {
+            get;
+            set;
+        } = x;
+        public int Y
+        {
+            get;
+            set;
+        } = y;
+        public Position((int x, int y, int _) cell) : this(cell.x, cell.y)
+        {
+
+        }
         public static Position operator +(Position a, Position b)
         {
-            return new(a.x + b.x, a.y + b.y);
+            return new(a.X + b.X, a.Y + b.Y);
         }
         public static Position operator -(Position a, Position b)
         {
-            return new(a.x - b.x, a.y - b.y);
+            return new(a.X - b.X, a.Y - b.Y);
         }
         public static Position operator -(Position a, (int x, int y) b)
         {
-            return new(a.x - b.x, a.y - b.y);
+            return new(a.X - b.x, a.Y - b.y);
         }
     }
     public static class MatrixParser
@@ -143,11 +157,11 @@ namespace AdventLibrary
         {
             get
             {
-                return data[position.x, position.y];
+                return data[position.X, position.Y];
             }
             set
             {
-                data[position.x, position.y] = value;
+                data[position.X, position.Y] = value;
             }
         }
         #endregion
@@ -182,7 +196,7 @@ namespace AdventLibrary
         }
         public bool NotOutOfBounds(Position position)
         {
-            return NotOutOfBounds(position.x, position.y);
+            return NotOutOfBounds(position.X, position.Y);
         }
         #endregion
         public IEnumerable<MatrixRow<T>> AsRows()
@@ -201,13 +215,13 @@ namespace AdventLibrary
         }
         public static int GetDistance(Position a, Position b)
         {
-            return Math.Abs(a.x - b.x) +
-                   Math.Abs(a.y - b.y);
+            return Math.Abs(a.X - b.X) +
+                   Math.Abs(a.Y - b.Y);
         }
         public static int GetDistance((int x, int y, T _) a, Position b)
         {
-            return Math.Abs(a.x - b.x) +
-                   Math.Abs(a.y - b.y);
+            return Math.Abs(a.x - b.X) +
+                   Math.Abs(a.y - b.Y);
         }
     }
 

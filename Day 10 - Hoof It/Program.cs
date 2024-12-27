@@ -21,8 +21,8 @@ int CheckTrails(Matrix<byte> matrix, int originX, int originY, bool distinctPath
 
             foreach (var movement in GridMovement.PossibleMovements())
             {
-                var nextX = position.x + movement.x;
-                var nextY = position.y + movement.y;
+                var nextX = position.x + movement.X;
+                var nextY = position.y + movement.Y;
 
                 if (matrix.NotOutOfBounds(nextX, nextY))
                 {

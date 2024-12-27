@@ -24,8 +24,8 @@ List<Position> FindPath(Matrix<char> matrix, int originX, int originY)
     {
         foreach (var movement in GridMovement.PossibleMovements())
         {
-            var nextX = position.x + movement.x;
-            var nextY = position.y + movement.y;
+            var nextX = position.X + movement.X;
+            var nextY = position.Y + movement.Y;
             var nextCellValue = matrix[nextX, nextY];
 
             if ((nextCellValue == FREE || nextCellValue == END) &&
@@ -77,8 +77,8 @@ ShortcutInfo GetShortcuts(Matrix<char> matrix, List<Position> originalPath, int 
     for (int i = pathIndex; i < originalPath.Count; i++)
     {
         var currentPosition = originalPath[i];
-        var distance = Math.Abs(startPosition.x - currentPosition.x) +
-                       Math.Abs(startPosition.y - currentPosition.y);
+        var distance = Math.Abs(startPosition.X - currentPosition.X) +
+                       Math.Abs(startPosition.Y - currentPosition.Y);
 
         if (distance <= nrOfCheatSteps &&
             (i - pathIndex) > distance)

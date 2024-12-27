@@ -28,8 +28,8 @@ string GetKey(int value, string[] controlKeys)
 }
 string MovementToControlKeys(Matrix<char> matrix, Position movement, int depth)
 {
-    var xes = GetKey(movement.x, ["<", ">"]) + " ";
-    var yes = GetKey(movement.y, ["^", "v"]) + " ";
+    var xes = GetKey(movement.X, ["<", ">"]) + " ";
+    var yes = GetKey(movement.Y, ["^", "v"]) + " ";
 
     if (depth == 1)
     {
