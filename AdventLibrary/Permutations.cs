@@ -10,6 +10,19 @@ namespace AdventLibrary
             public RefDataType Value { get; } = value;
             public RefCountType Count { get; set; } = count;
         }
+        public static IEnumerable<(RefDataType a, RefDataType b)> Each<RefDataType>(
+            IEnumerable<RefDataType> setA,
+            IEnumerable<RefDataType> setB
+        )
+        {
+            foreach (var a in setA)
+            {
+                foreach (var b in setB)
+                {
+                    yield return (a, b);
+                }
+            }
+        }
         public static RefCountType Count<RefDataType, RefKeyType, RefPriorityType, RefCountType>(
             RefDataType initialValue,
             RefCountType seed,

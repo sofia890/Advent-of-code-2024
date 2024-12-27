@@ -71,6 +71,25 @@ namespace AdventLibrary
             data = new T[width, height];
             Array.Clear(data, 0, data.Length);
         }
+        public Matrix(string rawData)
+        {
+            var lines = rawData.Split("\r\n")
+                               .ToArray();
+
+            Width = lines[0].Length;
+            Height = lines.Length;
+
+            data = new T[Width, Height];
+            Array.Clear(data, 0, data.Length);
+
+            for (int x = 0; x < Width; x++)
+            {
+                for (int y = 0; y < Height; y++)
+                {
+                    data[x, y] = (T)Convert.ChangeType(lines[y][x], typeof(T));
+                }
+            }
+        }
         #endregion
 
         #region IEnumerator
@@ -173,6 +192,13 @@ namespace AdventLibrary
                 yield return new MatrixRow<T>(this, y);
             }
         }
+        public IEnumerable<MatrixColumn<T>> AsColumns()
+        {
+            for (int x = 0; x < Width; x++)
+            {
+                yield return new MatrixColumn<T>(this, x);
+            }
+        }
         public static int GetDistance(Position a, Position b)
         {
             return Math.Abs(a.x - b.x) +
@@ -210,6 +236,40 @@ namespace AdventLibrary
             for (int x = 0; x < data.Width; x++)
             {
                 yield return (x, Y, data[x, Y]);
+            }
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
+        #endregion
+    }
+
+    public class MatrixColumn<T> : IEnumerable<(int x, int y, T value)>
+    {
+        #region Properties
+        public int X
+        {
+            get;
+            private set;
+        }
+        #endregion
+
+        Matrix<T> data;
+
+        #region Constructors
+        public MatrixColumn(Matrix<T> data, int x)
+        {
+            this.data = data;
+            X = x;
+        }
+        #endregion
+        #region IEnumerator
+        public IEnumerator<(int x, int y, T value)> GetEnumerator()
+        {
+            for (int y = 0; y < data.Height; y++)
+            {
+                yield return (X, y, data[X, y]);
             }
         }
         IEnumerator IEnumerable.GetEnumerator()
