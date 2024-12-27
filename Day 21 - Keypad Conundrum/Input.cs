@@ -1,16 +1,17 @@
 ﻿namespace Day_21___Keypad_Conundrum
 {
+    internal record InputData(IEnumerable<string> Codes, int NrOfKeypadsPartOne, int NrOfKeypadsPartTwo);
     static internal class Input
     {
-        static IEnumerable<string> Parser(string filePath)
+        static InputData Parser(string filePath)
         {
-            return File.ReadAllText(filePath).Split("\r\n");
+            return new(File.ReadAllText(filePath).Split("\r\n"), 3, 26);
         }
-        public static IEnumerable<string> GetData()
+        public static InputData GetData()
         {
             return Parser("Data/Input.txt");
         }
-        public static IEnumerable<string> GetTrainingData()
+        public static InputData GetTrainingData()
         {
             return Parser("Data/TrainingInput.txt");
         }

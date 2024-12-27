@@ -23,6 +23,16 @@ namespace AdventLibrary
                 }
             }
         }
+        /*public static IEnumerable<string> Mix(string value)
+        {
+            HashSet<string> used = new();
+
+            foreach (var a in set)
+            {
+                yield return (a, b);
+            }
+
+        }*/
         public static RefCountType Count<RefDataType, RefKeyType, RefPriorityType, RefCountType>(
             RefDataType initialValue,
             RefCountType seed,

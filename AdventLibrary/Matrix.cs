@@ -2,7 +2,7 @@
 
 namespace AdventLibrary
 {
-    public class Position(int x, int y)
+    public class Position(int x, int y) : IEquatable<Position>
     {
         public int X
         {
@@ -14,6 +14,10 @@ namespace AdventLibrary
             get;
             set;
         } = y;
+        public Position() : this(0, 0)
+        {
+
+        }
         public Position((int x, int y, int _) cell) : this(cell.x, cell.y)
         {
 
@@ -29,6 +33,37 @@ namespace AdventLibrary
         public static Position operator -(Position a, (int x, int y) b)
         {
             return new(a.X - b.x, a.Y - b.y);
+        }
+        public Position Copy()
+        {
+            return new(X, Y);
+        }
+        public override string ToString()
+        {
+            return $"{{ X: {X}, Y: {Y} }}";
+        }
+        public bool Equals(Position? other)
+        {
+            if (other is null)
+            {
+                return false;
+            }
+            else if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+            else
+            {
+                return X == other.X && Y == other.Y;
+            }
+        }
+        public override bool Equals(object? obj)
+        {
+            return Equals(obj as Position);
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(X, Y);
         }
     }
     public static class MatrixParser
@@ -169,13 +204,17 @@ namespace AdventLibrary
         #region ToString
         public string ToString(Func<T, string> func)
         {
+            return ToString((x, y, value) => func(value));
+        }
+        public string ToString(Func<int, int, T, string> func)
+        {
             string illustrationLine = "";
 
             for (int y = 0; y < Height; y++)
             {
                 for (int x = 0; x < Width; x++)
                 {
-                    illustrationLine += func(data[x, y]);
+                    illustrationLine += func(x, y, data[x, y]);
                 }
 
                 if (y != Height - 1)
@@ -222,6 +261,16 @@ namespace AdventLibrary
         {
             return Math.Abs(a.x - b.X) +
                    Math.Abs(a.y - b.Y);
+        }
+        public static int GetDistance((int x, int y, T _) a, (int x, int y, T _) b)
+        {
+            return Math.Abs(a.x - b.x) +
+                   Math.Abs(a.y - b.y);
+        }
+        public static int GetDistance(Position a, (int x, int y, T _) b)
+        {
+            return Math.Abs(a.X - b.x) +
+                   Math.Abs(a.Y - b.y);
         }
     }
 
