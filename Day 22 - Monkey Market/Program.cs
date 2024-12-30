@@ -47,7 +47,7 @@ long ForwardRandomSequence(int seed, int steps)
 }
 (List<string> choices, Dictionary<string, long> lookupTable) DiffSequence(int seed, int steps, Dictionary<string, long> agregation)
 {
-    HashSet<string> used = new();
+    HashSet<string> used = [];
     List<long> pattern = [];
 
     var (secretNumber, change, firstDigit) = ForwardState(seed);
@@ -59,8 +59,8 @@ long ForwardRandomSequence(int seed, int steps)
     (secretNumber, change, firstDigit) = ForwardState(secretNumber);
     pattern.Add(change);
 
-    List<string> elements = new();
-    Dictionary<string, long> lookupTable = new();
+    List<string> elements = [];
+    Dictionary<string, long> lookupTable = [];
 
     for (int i = 3; i < steps; i++)
     {
@@ -91,7 +91,7 @@ void PartOne(IEnumerable<int> seeds, int steps)
 }
 void PartTwo(IEnumerable<int> seeds, int steps)
 {
-    Dictionary<string, long> agregation = new();
+    Dictionary<string, long> agregation = [];
 
     foreach (var seed in seeds)
     {

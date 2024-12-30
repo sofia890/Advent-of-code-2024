@@ -20,10 +20,10 @@ namespace Day_21___Keypad_Conundrum
     {
         public event EventHandler<char>? KeyPressed;
 
-        Matrix<char> matrix;
+        readonly Matrix<char> matrix;
         Position position;
-        char enterSymbol;
-        char blockedSymbol;
+        readonly char enterSymbol;
+        readonly char blockedSymbol;
 
         public Position Position => position;
 

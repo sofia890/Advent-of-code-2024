@@ -2,20 +2,13 @@
 
 namespace Day_21___Keypad_Conundrum
 {
-    internal class KeyToProcess
+    internal class KeyToProcess(char input, int deviceIndex, Position padPosition, long count)
     {
-        public char Input { get; set; }
-        public int DeviceIndex { get; set; }
-        public Position PadInputIsOn { get; set; }
-        public long Count { get; set; }
+        public char Input { get; set; } = input;
+        public int DeviceIndex { get; set; } = deviceIndex;
+        public Position PadInputIsOn { get; set; } = padPosition;
+        public long Count { get; set; } = count;
 
-        public KeyToProcess(char input, int deviceIndex, Position padPosition, long count)
-        {
-            Input = input;
-            DeviceIndex = deviceIndex;
-            PadInputIsOn = padPosition;
-            Count = count;
-        }
         public override string ToString()
         {
             return $"{{ Input: {Input}, DeviceIndex: {DeviceIndex}, PadPosition: {PadInputIsOn}, Count: {Count} }}";

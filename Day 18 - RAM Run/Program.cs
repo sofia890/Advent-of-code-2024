@@ -19,21 +19,21 @@ IEnumerable<Position> WalkGrid(Matrix<char> matrix, int originX, int originY)
 
     while (workQueue.Count > 0)
     {
-        var position = workQueue.Dequeue();
+        var (positionX, positionY, steps, path) = workQueue.Dequeue();
 
         foreach (var movement in GridMovement.PossibleMovements())
         {
-            var nextX = position.x + movement.X;
-            var nextY = position.y + movement.Y;
+            var nextX = positionX + movement.X;
+            var nextY = positionY + movement.Y;
 
             if (matrix.NotOutOfBounds(nextX, nextY) &&
                 matrix[nextX, nextY] != WALL &&
-                !position.path.Contains(new(nextX, nextY)) &&
+                !path.Contains(new(nextX, nextY)) &&
                 !cells[nextX, nextY])
             {
-                var nextSteps = position.steps + 1;
+                var nextSteps = steps + 1;
 
-                var nextPath = position.path.ToList();
+                var nextPath = path.ToList();
                 nextPath.Add(new(nextX, nextY));
 
                 cells[nextX, nextY] = true;
@@ -56,7 +56,7 @@ IEnumerable<Position> WalkGrid(Matrix<char> matrix, int originX, int originY)
     }
     else
     {
-        return new List<Position>();
+        return [];
     }
 }
 void PlaceFallenBytes(Matrix<char> matrix, IList<Position> bytes, int index = 0, int amount = 1)

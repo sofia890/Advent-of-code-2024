@@ -77,7 +77,7 @@ namespace Day_24___Crossed_Wires
             return new(_inA, _action, _inB, OutA);
         }
     }
-    internal record InputData(Dictionary<string, int> registers, List<Operation> operations);
+    internal record InputData(Dictionary<string, int> Registers, List<Operation> Operations);
     static internal class Input
     {
         static InputData Parser(string filePath)

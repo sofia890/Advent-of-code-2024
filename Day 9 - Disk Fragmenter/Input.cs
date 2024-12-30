@@ -2,7 +2,7 @@
 {
     internal class DiskInformation()
     {
-        public int[] Disk { get; set; } = Array.Empty<int>();
+        public int[] Disk { get; set; } = [];
         public Queue<int> FreeBlocks { get; } = new();
         public Queue<(int fileId, int index, int length)> Files { get; } = new();
     }
@@ -51,7 +51,7 @@
                 }
             }
 
-            diskInfo.Disk = disk.ToArray();
+            diskInfo.Disk = [.. disk];
 
             return diskInfo;
         }

@@ -4,7 +4,7 @@ const int NO_INDEX = -1000;
 
 List<int[]> GetLevelChange(List<int[]> reports)
 {
-    List<int[]> levelChangeReports = new();
+    List<int[]> levelChangeReports = [];
 
     for (int i = 0; i < reports.Count; i++)
     {

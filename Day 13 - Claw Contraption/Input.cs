@@ -5,10 +5,10 @@ namespace Day_13___Claw_Contraption
     internal class Input
     {
         const int LINES_PER_ENTRY = 3;
-        public record Position(long x, long y);
-        public record StepSize(long x, long y);
-        public record Entry(Position goal, StepSize a, StepSize b);
-        static IEnumerable<Entry> Parse(string data)
+        public record Position(long X, long Y);
+        public record StepSize(long X, long Y);
+        public record Entry(Position Goal, StepSize A, StepSize B);
+        static List<Entry> Parse(string data)
         {
             var list = new List<Entry>();
 

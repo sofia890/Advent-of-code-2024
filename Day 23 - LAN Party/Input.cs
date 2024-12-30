@@ -1,6 +1,6 @@
 ﻿namespace Day_23___LAN_Party
 {
-    internal record Connection(string nodeA, string nodeB);
+    internal record Connection(string NodeA, string NodeB);
     internal static class Input
     {
         static (Connection[] connections, string prefix) Parser(string filePath)
@@ -12,7 +12,7 @@
                                       var components = x.Split("-").Order();
                                       return new Connection(components.First(), components.Last());
                                   })
-                                  .DistinctBy(x => $"{x.nodeA}{x.nodeB}");
+                                  .DistinctBy(x => $"{x.NodeA}{x.NodeB}");
 
             return (connections.ToArray(), "t");
         }

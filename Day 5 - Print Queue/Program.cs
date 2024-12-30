@@ -1,12 +1,12 @@
 ﻿using Day_5___Print_Queue;
 
-bool ProcessPartOneUpdate(int[,] orderRules, int[] update)
+bool ProcessPartOneUpdate(List<int[]> orderRules, int[] update)
 {
     var InvalidCombinations = new Dictionary<(int, int), bool>();
 
-    for (int i = 0; i < orderRules.GetLength(0); i++)
+    for (int i = 0; i < orderRules.Count; i++)
     {
-        InvalidCombinations.Add((orderRules[i, 1], orderRules[i, 0]), true);
+        InvalidCombinations.Add((orderRules[i][1], orderRules[i][0]), true);
     }
 
     for (int i = 0; i < update.Length; i++)
@@ -25,7 +25,7 @@ bool ProcessPartOneUpdate(int[,] orderRules, int[] update)
 
     return true;
 }
-void ProcessPartOne(int[,] orderRules, List<int[]> updates)
+void PartOne(List<int[]> orderRules, List<int[]> updates)
 {
     var middlePageNumbersSummed = 0;
 
@@ -37,21 +37,22 @@ void ProcessPartOne(int[,] orderRules, List<int[]> updates)
         }
     }
 
-    Console.WriteLine($"Part one -- Sum of all middle pages of all valid reports is {middlePageNumbersSummed}.");
+    Console.WriteLine($"Part One: Sum of all middle pages of all valid reports is {middlePageNumbersSummed}.");
 }
 
-List<int> FixPrintOrder(int[,] orderRules, int[] update)
+List<int> FixPrintOrder(List<int[]> orderRules, int[] update)
 {
     var CorrectOrders = new Dictionary<int, List<int>>();
 
-    for (int i = 0; i < orderRules.GetLength(0); i++)
+    for (int i = 0; i < orderRules.Count; i++)
     {
-        if (!CorrectOrders.ContainsKey(orderRules[i, 0]))
+        if (!CorrectOrders.TryGetValue(orderRules[i][0], out var otherItem))
         {
-            CorrectOrders.Add(orderRules[i, 0], new List<int>());
+            otherItem = [];
+            CorrectOrders.Add(orderRules[i][0], otherItem);
         }
 
-        CorrectOrders[orderRules[i, 0]].Add(orderRules[i, 1]);
+        otherItem.Add(orderRules[i][1]);
     }
 
     var fixedOrder = new List<int>()
@@ -63,10 +64,8 @@ List<int> FixPrintOrder(int[,] orderRules, int[] update)
     {
         int a = update[i];
 
-        if (CorrectOrders.ContainsKey(a))
+        if (CorrectOrders.TryGetValue(a, out var leftOfAllThese))
         {
-            var leftOfAllThese = CorrectOrders[a];
-
             for (int j = 0; j < fixedOrder.Count; j++)
             {
                 int b = fixedOrder[j];
@@ -87,7 +86,7 @@ List<int> FixPrintOrder(int[,] orderRules, int[] update)
 
     return fixedOrder;
 }
-void ProcessPartTwo(int[,] orderRules, List<int[]> updates)
+void PartTwo(List<int[]> orderRules, List<int[]> updates)
 {
     var middlePageNumbersSummed = 0;
 
@@ -97,13 +96,13 @@ void ProcessPartTwo(int[,] orderRules, List<int[]> updates)
         {
             var fixedOrder = FixPrintOrder(orderRules, update);
 
-            middlePageNumbersSummed += fixedOrder[fixedOrder.Count() / 2];
+            middlePageNumbersSummed += fixedOrder[fixedOrder.Count / 2];
         }
     }
 
-    Console.WriteLine($"Part two -- Sum of all middle pages of all fixed reports is {middlePageNumbersSummed}.");
+    Console.WriteLine($"Part One: Sum of all middle pages of all fixed reports is {middlePageNumbersSummed}.");
 }
 
-(int[,] orderRules, List<int[]> updates) = Input.GetData();
-ProcessPartOne(orderRules, updates);
-ProcessPartTwo(orderRules, updates);
+(var orderRules, var updates) = Input.GetData();
+PartOne(orderRules, updates);
+PartTwo(orderRules, updates);

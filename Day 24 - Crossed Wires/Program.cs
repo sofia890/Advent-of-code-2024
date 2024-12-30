@@ -11,16 +11,16 @@ long GetNumber(Dictionary<string, int> registers, char registerGroup)
 
     long result = 0;
 
-    foreach (var currentRegister in resultRegisters)
+    foreach (var (_, index, value) in resultRegisters)
     {
-        result |= (long)currentRegister.value << currentRegister.index;
+        result |= (long)value << index;
     }
 
     return result;
 }
 long Run(Dictionary<string, int> registers, List<Operation> operations, bool verbose = false)
 {
-    while (operations.Any())
+    while (operations.Count > 0)
     {
         var readyOperations = operations.Where(x => x.IsReady(registers)).ToArray();
 
@@ -55,23 +55,13 @@ string ReplaceOutputs(
     {
         Console.WriteLine($"{operation.OutA}<->{other.OutA}");
 
-        if (other != null)
-        {
-            var temp = operation.OutA;
-            operation.OutA = other.OutA;
-            other.OutA = temp;
+        (other.OutA, operation.OutA) = (operation.OutA, other.OutA);
+        lookup[operation.OutA] = operation;
+        lookup[other.OutA] = other;
 
-            lookup[operation.OutA] = operation;
-            lookup[other.OutA] = other;
+        swapped.AddRange([operation.OutA, other.OutA]);
 
-            swapped.AddRange([operation.OutA, other.OutA]);
-
-            return operation.OutA;
-        }
-        else
-        {
-            return string.Empty;
-        }
+        return operation.OutA;
     }
     else
     {
@@ -249,14 +239,14 @@ List<string> GetResultRegisterData(Dictionary<string, int> registers, List<Opera
 {
     var nrOfInputRegisters = registers.Count / 2;
 
-    Dictionary<string, Operation> lookup = new();
+    Dictionary<string, Operation> lookup = [];
 
     foreach (var current in operations)
     {
         lookup[current.OutA] = current;
     }
 
-    List<string> swapped = new();
+    List<string> swapped = [];
 
     string accumulatorName = "pkm";
 
@@ -426,5 +416,5 @@ void PartTwo(Dictionary<string, int> registers, List<Operation> operations)
 }
 
 var (registers, operations) = Input.GetData();
-PartOne(new(registers), operations.ToList());
-PartTwo(new(registers), operations.ToList());
+PartOne(new(registers), [.. operations]);
+PartTwo(new(registers), [.. operations]);

@@ -33,9 +33,9 @@ int Rotate(int direction, int rotation)
 IEnumerable<Move> GetValidMoves(Matrix<char> matrix, Trek path, bool[,,] visitedTiles)
 {
     const int MOVE_COST = 1;
-    var movement = GetMovementFromDirection(path.direction);
-    var nextX = path.x + movement.x;
-    var nextY = path.y + movement.y;
+    var (movementX, movementY) = GetMovementFromDirection(path.direction);
+    var nextX = path.x + movementX;
+    var nextY = path.y + movementY;
     var stepForward = (nextX, nextY, path.direction, path.score + MOVE_COST);
 
     Move[] possibleMoves = [stepForward, .. GetPossibleRotations(path)];

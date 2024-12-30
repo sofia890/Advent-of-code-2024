@@ -12,14 +12,14 @@ int CheckTrails(Matrix<byte> matrix, int originX, int originY, bool distinctPath
     {
         Queue<(int x, int y)> newWorkQueue = new();
 
-        while (workQueue.Any())
+        while (workQueue.Count > 0)
         {
-            var position = workQueue.Dequeue();
+            var (positionX, positionY) = workQueue.Dequeue();
 
             foreach (var movement in GridMovement.PossibleMovements())
             {
-                var nextX = position.x + movement.X;
-                var nextY = position.y + movement.Y;
+                var nextX = positionX + movement.X;
+                var nextY = positionY + movement.Y;
 
                 if (matrix.NotOutOfBounds(nextX, nextY))
                 {
@@ -38,7 +38,7 @@ int CheckTrails(Matrix<byte> matrix, int originX, int originY, bool distinctPath
 
     if (distinctPaths)
     {
-        return workQueue.Count();
+        return workQueue.Count;
     }
     else
     {

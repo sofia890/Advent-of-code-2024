@@ -42,8 +42,8 @@ void PartTwo(DiskInformation diskInfo)
                                   .GroupBy(x => x.value)
                                   .Select(x =>
                                   {
-                                      var area = x.First();
-                                      return (area.value, area.index, length: x.Count());
+                                      var (value, index) = x.First();
+                                      return (value, index, length: x.Count());
                                   })
                                   .Where(x => x.length >= file.length)
                                   .FirstOrDefault();

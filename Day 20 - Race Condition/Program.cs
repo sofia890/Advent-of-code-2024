@@ -41,34 +41,6 @@ List<Position> FindPath(Matrix<char> matrix, int originX, int originY)
 
     return path;
 }
-/// <summary>
-/// Determines if at least one element is skipped by going from the first index to the second.
-/// Example:
-///       ┌ indexA
-///       │       ┌ indexB
-///       ↓       ↓
-///     | a | b | c | d | e | f | g | h | i | j |
-///     | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
-///       ↑       ↑
-///       |       |
-///       ├───────┘
-///       └─────────────────> indexB - indexA = 2
-/// </summary>
-/// <param name="indexA">The first index.</param>
-/// <param name="indexB">The second index.</param>
-/// <returns>
-///     True if there is at least one element that gets skipped by going from the first to the
-///     second index.
-///     False if either index is negative.
-///     False if first index is after the second.
-/// </returns>
-bool IndexesSkipAtLeastOne(int indexA, int indexB)
-{
-    return indexA >= 0 &&
-           indexB >= 0 &&
-           indexA < indexB &&
-           (indexB - indexA) > 2;
-}
 ShortcutInfo GetShortcuts(Matrix<char> matrix, List<Position> originalPath, int nrOfCheatSteps, int pathIndex)
 {
     var startPosition = originalPath[pathIndex];
@@ -124,5 +96,5 @@ void PartTwo(Matrix<char> matrix, int nrOfCheatSteps, int minSavedSteps)
 }
 
 (var matrix, var nrOfCheatStepsA, var nrOfCheatStepsB, var minSavedStepsA, var minSavedStepsB) = Input.GetData();
-//PartOne(matrix, nrOfCheatStepsA, minSavedStepsA);
+PartOne(matrix, nrOfCheatStepsA, minSavedStepsA);
 PartTwo(matrix, nrOfCheatStepsB, minSavedStepsB);

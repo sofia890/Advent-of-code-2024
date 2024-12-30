@@ -22,35 +22,28 @@
         RegisterC,
         Reserved
     }
-    internal class Computer
+    internal class Computer(int[] program, int reigsterA, int registerB, int registerC)
     {
         private int RegisterA
         {
             get;
             set;
-        }
+        } = reigsterA;
         private int RegisterB
         {
             get;
             set;
-        }
+        } = registerB;
         private int RegisterC
         {
             get;
             set;
-        }
+        } = registerC;
         private int[] Program
         {
             get;
             set;
-        }
-        public Computer(int[] program, int reigsterA, int registerB, int registerC)
-        {
-            Program = program;
-            RegisterA = reigsterA;
-            RegisterB = registerB;
-            RegisterC = registerC;
-        }
+        } = program;
         int ResolveComboOperand(Combo value)
         {
             return value switch
@@ -79,11 +72,11 @@
                 switch (optcode)
                 {
                     case Optcode.DivisionToA_ACo:
-                        RegisterA = RegisterA / (int)Math.Pow(2, comboOperand);
+                        RegisterA /= (int)Math.Pow(2, comboOperand);
                         break;
 
                     case Optcode.BitwiseXorToB_BL:
-                        RegisterB = RegisterB ^ literalOperand;
+                        RegisterB ^= literalOperand;
                         break;
 
                     case Optcode.ModuloEightToB:
@@ -99,7 +92,7 @@
                         break;
 
                     case Optcode.BitwiseXorToB_BC:
-                        RegisterB = RegisterB ^ RegisterC;
+                        RegisterB ^= RegisterC;
                         break;
 
                     case Optcode.OutputModuloEight_Co:
@@ -126,14 +119,15 @@
                 int registerA = i;
 
                 int registerB = registerA % 8;
-                registerB = registerB ^ 3;
+                registerB ^= 3;
+
                 int registerC = registerA >> registerB;
-                registerB = registerB ^ registerC;
-                registerB = registerB ^ 5;
+                registerB ^= registerC;
+                registerB ^= 5;
 
                 var output = registerB % 8;
 
-                if (output == Program[Program.Length - 1])
+                if (output == Program[^1])
                 {
                     yield return (registerA, output);
                 }
@@ -143,13 +137,12 @@
         public long ReverseRun()
         {
             var matches = new List<long>();
-
-            foreach ((int a, int lastOptcode) in GetReverseSeeds())
+            foreach ((int a, _) in GetReverseSeeds())
             {
                 var workQueue = new Queue<(int index, long registerA)>();
                 workQueue.Enqueue((Program.Length - 2, a));
 
-                while (workQueue.Any())
+                while (workQueue.Count > 0)
                 {
                     var (index, currentRegisterA) = workQueue.Dequeue();
                     long registerA = currentRegisterA << 3;
@@ -157,11 +150,13 @@
                     for (long j = 0; j <= (Math.Pow(2, 3) - 1); j++)
                     {
                         long tempRegisterA = registerA | j;
+
                         long registerB = tempRegisterA % 8;
-                        registerB = registerB ^ 3;
+                        registerB ^= 3;
+
                         long registerC = tempRegisterA >> (int)registerB;
-                        registerB = registerB ^ registerC;
-                        registerB = registerB ^ 5;
+                        registerB ^= registerC;
+                        registerB ^= 5;
 
                         long output = registerB % 8;
 

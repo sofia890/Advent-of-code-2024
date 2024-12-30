@@ -101,7 +101,7 @@ void DisplayAndVerify(
         Console.WriteLine($"== Playback level {nrOfPads:2} ========================");
     }
 
-    var origin = Console.GetCursorPosition();
+    var (originLeft, originTop) = Console.GetCursorPosition();
 
     foreach (var c in input)
     {
@@ -114,7 +114,7 @@ void DisplayAndVerify(
             continue;
         }
 
-        Console.SetCursorPosition(origin.Left, origin.Top);
+        Console.SetCursorPosition(originLeft, originTop);
         Console.WriteLine($"Actions: {input}");
 
         for (int i = devices.Length - 1; i > 0; i++)
@@ -159,7 +159,7 @@ void DisplayAndVerify(
 
     if ((current.DeviceIndex + 1) < (inputDevices.Length - 1))
     {
-        List<KeyToProcess> nextKeys = new();
+        List<KeyToProcess> nextKeys = [];
 
         var nextDeviceIndex = current.DeviceIndex + 1;
         var nextDevice = keyMatrices[nextDeviceIndex];

@@ -72,7 +72,7 @@ List<(char type, List<(int x, int y)> elements)> GroupCellsIntoPlots(Matrix<char
     {
         var plotsConnectedByCell = plots.Where(currentPlot => IsPartOfArea(currentPlot, cell)).ToArray();
 
-        if (plotsConnectedByCell.Any())
+        if (plotsConnectedByCell.Length > 0)
         {
             var mergedPlot = plotsConnectedByCell.SelectMany(currentPlot => currentPlot.elements)
                                                  .ToList();

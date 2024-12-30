@@ -4,7 +4,7 @@ namespace Day_18___RAM_Run
 {
     internal static class Input
     {
-        private static IList<Position> Parse(string value)
+        private static List<Position> Parse(string value)
         {
             var list = new List<Position>();
 
@@ -17,12 +17,12 @@ namespace Day_18___RAM_Run
                         })
                         .ToList();
         }
-        public static (IList<Position> bytes, int width, int height, int nrofFallenBytes) GetData()
+        public static (List<Position> bytes, int width, int height, int nrofFallenBytes) GetData()
         {
             var data = File.ReadAllText("Data/Input.txt");
             return (Parse(data), 71, 71, 1024);
         }
-        public static (IList<Position> bytes, int width, int height, int nrofFallenBytes) GetTrainingData()
+        public static (List<Position> bytes, int width, int height, int nrofFallenBytes) GetTrainingData()
         {
             var data = File.ReadAllText("Data/TrainingInput.txt");
             return (Parse(data), 7, 7, 12);

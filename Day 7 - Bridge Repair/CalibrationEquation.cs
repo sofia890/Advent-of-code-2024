@@ -8,23 +8,23 @@
             Multiplication,
         };
 
-        long expectedValue;
-        public long ExpectedValue => expectedValue;
+        public long ExpectedValue { get; private set; }
 
-        long[] componentValues;
-        long nrofComponent;
+        readonly long[] componentValues;
 
         public CalibrationEquation(string rawEquation)
         {
             var data = rawEquation.Replace(":", "").Split(' ');
-            expectedValue = long.Parse(data[0]);
-            componentValues = data.Where((x, index) => index > 0).Select(x => long.Parse(x)).ToArray();
+            ExpectedValue = long.Parse(data[0]);
+            componentValues = data.Where((x, index) => index > 0).Select(long.Parse).ToArray();
         }
 
         public bool BruteForce(bool isPartOne)
         {
-            var permutations = new List<long>();
-            permutations.Add(componentValues[0]);
+            var permutations = new List<long>()
+            {
+                componentValues[0]
+            };
 
             for (int i = 1; i < componentValues.Length; i++)
             {
@@ -35,14 +35,14 @@
                     long currentValue = componentValues[i];
                     long a = value + currentValue;
 
-                    if (a <= expectedValue)
+                    if (a <= ExpectedValue)
                     {
                         newPermutations.Add(a);
                     }
 
                     long b = value * currentValue;
 
-                    if (b <= expectedValue)
+                    if (b <= ExpectedValue)
                     {
                         newPermutations.Add(b);
                     }
@@ -51,7 +51,7 @@
                     {
                         long c = long.Parse($"{value}{currentValue}");
 
-                        if (c <= expectedValue)
+                        if (c <= ExpectedValue)
                         {
                             newPermutations.Add(c);
                         }
@@ -63,7 +63,7 @@
 
             foreach (long value in permutations)
             {
-                if (expectedValue == value)
+                if (ExpectedValue == value)
                 {
                     return true;
                 }

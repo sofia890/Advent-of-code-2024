@@ -103,7 +103,7 @@ namespace AdventLibrary
         }
         #endregion
 
-        T[,] data;
+        readonly T[,] data;
 
         #region Constructors
         public Matrix(T[,] data)
@@ -274,25 +274,18 @@ namespace AdventLibrary
         }
     }
 
-    public class MatrixRow<T> : IEnumerable<(int x, int y, T value)>
+    public class MatrixRow<T>(Matrix<T> data, int y) : IEnumerable<(int x, int y, T value)>
     {
         #region Properties
         public int Y
         {
             get;
             private set;
-        }
+        } = y;
         #endregion
 
-        Matrix<T> data;
+        readonly Matrix<T> data = data;
 
-        #region Constructors
-        public MatrixRow(Matrix<T> data, int y)
-        {
-            this.data = data;
-            Y = y;
-        }
-        #endregion
         #region IEnumerator
         public IEnumerator<(int x, int y, T value)> GetEnumerator()
         {
@@ -308,25 +301,18 @@ namespace AdventLibrary
         #endregion
     }
 
-    public class MatrixColumn<T> : IEnumerable<(int x, int y, T value)>
+    public class MatrixColumn<T>(Matrix<T> data, int x) : IEnumerable<(int x, int y, T value)>
     {
         #region Properties
         public int X
         {
             get;
             private set;
-        }
+        } = x;
         #endregion
 
-        Matrix<T> data;
+        readonly Matrix<T> data = data;
 
-        #region Constructors
-        public MatrixColumn(Matrix<T> data, int x)
-        {
-            this.data = data;
-            X = x;
-        }
-        #endregion
         #region IEnumerator
         public IEnumerator<(int x, int y, T value)> GetEnumerator()
         {
