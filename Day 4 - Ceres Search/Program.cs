@@ -137,7 +137,7 @@ bool isMatch(string[] matrix, int origin_row, int origin_column)
 
 int nrof_of_matches_part_two = 0;
 
-for  (int row = 0; row < data.Length; row++)
+for (int row = 0; row < data.Length; row++)
 {
     for (int column = 0; column < data[0].Length; column++)
     {

@@ -3,7 +3,6 @@ using Day_20___Race_Condition;
 
 using ShortcutInfo = System.Collections.Generic.IEnumerable<(int savedSteps, AdventLibrary.Position shortcutStart, AdventLibrary.Position shortcutEnd)>;
 
-const char WALL = '#';
 const char FREE = '.';
 const char START = 'S';
 const char END = 'E';

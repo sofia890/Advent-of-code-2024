@@ -1,5 +1,4 @@
 ﻿using AdventLibrary;
-using System.Collections.Generic;
 
 namespace Day_25___Code_Chronicle
 {

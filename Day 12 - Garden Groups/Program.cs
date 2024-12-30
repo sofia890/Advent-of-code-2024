@@ -1,6 +1,5 @@
 ﻿using AdventLibrary;
 using Day_12___Garden_Groups;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 const int MAX_N_SIDES = 4;
 
@@ -26,7 +25,8 @@ bool IsMatch(Matrix<char> data, char type, (int x, int y) position)
 int CalculateCostForPlotBulkDiscount(Matrix<char> data, List<(int x, int y)> elements, char type)
 {
     return elements.Count * elements.Aggregate(0,
-        (a, cellA) => {
+        (a, cellA) =>
+        {
             int nrOfSidesWithoutFence = elements.Where(cellB => isNeighbour(cellA, cellB)).Count();
 
             if (nrOfSidesWithoutFence != 4)
@@ -82,7 +82,7 @@ List<(char type, List<(int x, int y)> elements)> GroupCellsIntoPlots(Matrix<char
 
             foreach (var plot in plotsConnectedByCell)
             {
-                plots.Remove(plot);
+                _ = plots.Remove(plot);
             }
         }
         else

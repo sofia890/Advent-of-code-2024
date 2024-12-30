@@ -1,8 +1,5 @@
-﻿using Day_10___Hoof_It;
-using AdventLibrary;
-using Move = (int x, int y, int rotation, int cost);
-using Position = (int x, int y);
-using Trek = (int x, int y, int direction, int score, System.Collections.Generic.List<(int x, int y)> trail);
+﻿using AdventLibrary;
+using Day_10___Hoof_It;
 
 const int MAX_N_STEPS = 9;
 

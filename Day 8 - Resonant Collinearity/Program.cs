@@ -1,16 +1,16 @@
 ﻿
 
-using Day_8___Resonant_Collinearity;
 using AdventLibrary;
+using Day_8___Resonant_Collinearity;
 
-void ProcessAntennaAntinodes(Matrix<bool> antinodeMap,int x, int y, int diff_x, int diff_y, bool considerResonanHarmonics)
+void ProcessAntennaAntinodes(Matrix<bool> antinodeMap, int x, int y, int diff_x, int diff_y, bool considerResonanHarmonics)
 {
     if (Math.Abs(diff_x) + Math.Abs(diff_y) > 0)
     {
         int current_x = x + diff_x;
         int current_y = y + diff_y;
 
-        if (!considerResonanHarmonics )
+        if (!considerResonanHarmonics)
         {
             if (antinodeMap.NotOutOfBounds(current_x, current_y))
             {

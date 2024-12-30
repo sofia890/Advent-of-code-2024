@@ -1,5 +1,4 @@
-﻿using System.Data.SqlTypes;
-using System.Numerics;
+﻿using System.Numerics;
 
 namespace AdventLibrary
 {

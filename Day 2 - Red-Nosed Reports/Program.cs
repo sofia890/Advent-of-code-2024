@@ -1,6 +1,4 @@
 ﻿// Test reports
-using System.Reflection.Metadata.Ecma335;
-
 //List<int[]> reports = new List<int[]>
 //{
 //    new int[] {7, 6, 4, 2, 1},
@@ -11,7 +9,7 @@ using System.Reflection.Metadata.Ecma335;
 //    new int[] {1, 3, 6, 7, 9}
 //};
 
-List<int[]> reports = new List<int[]>
+List<int[]> reports = new()
 {
     new int[] { 11, 12, 15, 18, 19, 18, },
     new int[] { 84, 86, 88, 89, 92, 92, },
@@ -1023,7 +1021,7 @@ const int MAX_LEVEL_CHANGE = 3;
 
 List<int[]> GetLevelChange(List<int[]> reports)
 {
-    List<int[]> levelChangeReports = new List<int[]>();
+    List<int[]> levelChangeReports = new();
 
     for (int i = 0; i < reports.Count; i++)
     {

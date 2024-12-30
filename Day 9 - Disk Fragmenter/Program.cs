@@ -1,5 +1,4 @@
 ﻿using Day_9___Disk_Fragmenter;
-using System.Linq;
 
 long CalculateChecksumForDisk(int[] disk)
 {

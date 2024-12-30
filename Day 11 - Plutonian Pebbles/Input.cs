@@ -6,7 +6,7 @@
         {
             return input.Split(' ').Select(long.Parse);
         }
-        public static  (IEnumerable<long> numbers, int iterationsPartA, int iterationsPartB) GetData()
+        public static (IEnumerable<long> numbers, int iterationsPartA, int iterationsPartB) GetData()
         {
             return (ParseList("0 44 175060 3442 593 54398 9 8101095"), 25, 75);
         }

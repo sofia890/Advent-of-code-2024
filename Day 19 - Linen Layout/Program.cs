@@ -1,6 +1,5 @@
-﻿using Day_19___Linen_Layout;
-
-using AdventLibrary;
+﻿using AdventLibrary;
+using Day_19___Linen_Layout;
 
 bool PatternIsPossible(string[] towels, string pattern)
 {

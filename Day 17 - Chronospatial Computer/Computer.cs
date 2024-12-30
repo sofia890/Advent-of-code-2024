@@ -1,13 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-
-namespace Day_17___Chronospatial_Computer
+﻿namespace Day_17___Chronospatial_Computer
 {
     internal enum Optcode
     {
@@ -155,8 +146,6 @@ namespace Day_17___Chronospatial_Computer
 
             foreach ((int a, int lastOptcode) in GetReverseSeeds())
             {
-                var newProgram = $"{lastOptcode}";
-
                 var workQueue = new Queue<(int index, long registerA)>();
                 workQueue.Enqueue((Program.Length - 2, a));
 

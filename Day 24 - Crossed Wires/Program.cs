@@ -36,7 +36,7 @@ long Run(Dictionary<string, int> registers, List<Operation> operations, bool ver
             var (value, targetRegister) = operation.Perform(registers, verbose);
             registers[targetRegister] = value;
 
-            operations.Remove(operation);
+            _ = operations.Remove(operation);
         }
     }
 
@@ -352,13 +352,13 @@ List<string> GetResultRegisterData(Dictionary<string, int> registers, List<Opera
 
                     if (lookup[unused] is not (_, _, XOR, _))
                     {
-                        ReplaceOutputs(lookup,
-                                       operations,
-                                       swapped,
-                                       lookup[unused],
-                                       x => x is (var inA, var inB, XOR, _) &&
-                                            ((inA == xIdentifier && inB == yIdentifier) ||
-                                             (inA == yIdentifier && inB == xIdentifier)));
+                        _ = ReplaceOutputs(lookup,
+                                           operations,
+                                           swapped,
+                                           lookup[unused],
+                                           x => x is (var inA, var inB, XOR, _) &&
+                                                ((inA == xIdentifier && inB == yIdentifier) ||
+                                                 (inA == yIdentifier && inB == xIdentifier)));
                     }
 
                     (originSide1Name, originSide2Name, _, _) = lookup[originidentifier];

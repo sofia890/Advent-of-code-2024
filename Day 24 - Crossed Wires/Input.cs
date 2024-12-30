@@ -13,25 +13,11 @@ namespace Day_24___Crossed_Wires
         {
             var isReadyInA = registers.ContainsKey(_inA);
             var isReadyInB = registers.ContainsKey(_inB);
-            int valueInA = registers.GetValueOrDefault(_inA);
-            int valueInB = registers.GetValueOrDefault(_inB);
 
             bool bothInReady = isReadyInA && isReadyInB;
-
-            //return Action switch
-            //{
-            //    "AND" => bothInReady ||
-            //             (isReadyInA && valueInA == 0) ||
-            //             (isReadyInB && valueInB == 0),
-            //    "OR" => bothInReady ||
-            //            (isReadyInA && valueInA == 1) ||
-            //            (isReadyInB && valueInB == 1),
-            //    "XOR" => bothInReady,
-            //    _ => throw new NotImplementedException()
-            //};
             return bothInReady;
         }
-        public (int value, string register) Perform(Dictionary<string, int> registers, bool verbose=false)
+        public (int value, string register) Perform(Dictionary<string, int> registers, bool verbose = false)
         {
             int valueInA = registers.GetValueOrDefault(_inA);
             int valueInB = registers.GetValueOrDefault(_inB);

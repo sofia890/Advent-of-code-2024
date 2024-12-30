@@ -48,10 +48,10 @@ IEnumerable<Network> GetNetworks(Connection[] connections, int preferredNetworkS
 
     foreach (var currentConnection in connections)
     {
-        nodeInformation.TryAdd(currentConnection.nodeA, []);
+        _ = nodeInformation.TryAdd(currentConnection.nodeA, []);
         nodeInformation[currentConnection.nodeA].Add(currentConnection.nodeB);
 
-        nodeInformation.TryAdd(currentConnection.nodeB, []);
+        _ = nodeInformation.TryAdd(currentConnection.nodeB, []);
         nodeInformation[currentConnection.nodeB].Add(currentConnection.nodeA);
     }
 

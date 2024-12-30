@@ -1,6 +1,4 @@
 ﻿using Day_22___Monkey_Market;
-using System.Collections.Generic;
-using System.Numerics;
 
 long Mix(long secretNumber, long value)
 {
@@ -8,7 +6,7 @@ long Mix(long secretNumber, long value)
 }
 long Prune(long secretNumber)
 {
-    return (long)(secretNumber % 16777216);
+    return secretNumber % 16777216;
 }
 long ForwardOnce(long secretNumber)
 {
@@ -73,7 +71,7 @@ long ForwardRandomSequence(int seed, int steps)
 
         if (!used.Contains(currentPattern))
         {
-            used.Add(currentPattern);
+            _ = used.Add(currentPattern);
             lookupTable.Add(currentPattern, firstDigit);
 
             agregation[currentPattern] = agregation.GetValueOrDefault(currentPattern, 0L) + firstDigit;
@@ -97,7 +95,7 @@ void PartTwo(IEnumerable<int> seeds, int steps)
 
     foreach (var seed in seeds)
     {
-        DiffSequence(seed, steps, agregation);
+        _ = DiffSequence(seed, steps, agregation);
     }
 
 
@@ -118,8 +116,8 @@ void PartTwo(IEnumerable<int> seeds, int steps)
             maxBananas = candidate;
         }
     }
-    
-    
+
+
     //var maxBananas = choices.OrderDescending().First();
 
     Console.WriteLine($"Part Two: The sum of secrets is {maxBananas}.\n");
