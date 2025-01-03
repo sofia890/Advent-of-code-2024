@@ -57,11 +57,11 @@ int DetermineRating(Matrix<byte> matrix, bool distinctPaths)
 
 void PartOne(Matrix<byte> matrix)
 {
-    Console.WriteLine($"Part One: Sum of peaks reachable from trailheads {DetermineRating(matrix, false)}.");
+    Console.WriteLine($"Part One: Sum of peaks reachable from trailheads {DetermineRating(matrix, false)}.\n");
 }
 void PartTwo(Matrix<byte> matrix)
 {
-    Console.WriteLine($"Part Two: Sum of unique paths from trailheads {DetermineRating(matrix, true)}.");
+    Console.WriteLine($"Part Two: Sum of unique paths from trailheads {DetermineRating(matrix, true)}.\n");
 }
 
 var matrix = Input.GetData();

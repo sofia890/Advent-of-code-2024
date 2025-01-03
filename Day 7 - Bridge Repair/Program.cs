@@ -17,11 +17,11 @@ long HandlePart(CalibrationEquation[] equations, bool isPartOne)
 }
 void PartOne(CalibrationEquation[] equations)
 {
-    Console.WriteLine($"Part one -- Sum of all valid calibration results is {HandlePart(equations, false)}");
+    Console.WriteLine($"Part One: Sum of all valid calibration results is {HandlePart(equations, false)}");
 }
 void PartTwo(CalibrationEquation[] equations)
 {
-    Console.WriteLine($"Part two -- Sum of all valid calibration results is {HandlePart(equations, true)}");
+    Console.WriteLine($"Part Two: Sum of all valid calibration results is {HandlePart(equations, true)}");
 }
 
 var data = Input.GetData();

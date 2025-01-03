@@ -3,7 +3,7 @@
 void PartOne(int[] program, int reigisterA, int reigisterB, int reigisterC)
 {
     var computer = new Computer(program, reigisterA, reigisterB, reigisterC);
-    var output = computer.Run().Aggregate("", (a, b) => $"{a},{b}");
+    var output = computer.Run().Aggregate("", (a, b) => $"{a},{b}")[1..];
 
     Console.WriteLine($"Part One: Program output is {output}.\n");
 }

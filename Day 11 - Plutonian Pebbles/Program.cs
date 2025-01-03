@@ -65,11 +65,11 @@ long CalculateNumberOfStones2(IEnumerable<long> numbers, int maxIterations)
 }
 void PartOne(IEnumerable<long> numbers, int iterations)
 {
-    Console.WriteLine($"Part One: Total number of stones is {CalculateNumberOfStones2(numbers, iterations)}.");
+    Console.WriteLine($"Part One: Total number of stones is {CalculateNumberOfStones2(numbers, iterations)}.\n");
 }
 void PartTwo(IEnumerable<long> numbers, int iterations)
 {
-    Console.WriteLine($"Part Two: Total number of stones is {CalculateNumberOfStones2(numbers, iterations)}.");
+    Console.WriteLine($"Part Two: Total number of stones is {CalculateNumberOfStones2(numbers, iterations)}.\n");
 }
 
 (var numbers, int iterationsPartA, int iterationsPartB) = Input.GetData();

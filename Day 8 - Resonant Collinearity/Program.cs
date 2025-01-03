@@ -65,12 +65,12 @@ int CountAntinodes(Matrix<char> antennaMap, bool considerResonanHarmonics)
 
 void PartOne(Matrix<char> antennaMap)
 {
-    Console.WriteLine($"Part one -- Number of antinodes are {CountAntinodes(antennaMap, false)}.\n");
+    Console.WriteLine($"Part One: Number of antinodes are {CountAntinodes(antennaMap, false)}.\n");
 }
 
 void PartTwo(Matrix<char> antennaMap)
 {
-    Console.WriteLine($"Part two -- Number of antinodes when harmonics are considered are {CountAntinodes(antennaMap, true)}.");
+    Console.WriteLine($"Part Two: Number of antinodes when harmonics are considered are {CountAntinodes(antennaMap, true)}.");
 }
 
 var antennaMap = Input.GetData();

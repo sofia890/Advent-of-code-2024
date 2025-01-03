@@ -2,17 +2,22 @@
 {
     internal static class Input
     {
-        public static int[] Parse(string value)
+        private static (int[] opcodes, int a, int b, int c) Parse(string filePath, int a)
         {
-            return value.Split(',').Select(int.Parse).ToArray();
+            string data = File.ReadAllText(filePath);
+            var stoneNumbers = data.Split(',').Select(int.Parse).ToArray();
+
+            return (stoneNumbers, a, 0, 0);
         }
+
         public static (int[] opcodes, int a, int b, int c) GetData()
         {
-            return (Parse("2,4,1,3,7,5,0,3,4,1,1,5,5,5,3,0"), 45483412, 0, 0);
+            return Parse("Data/Input.txt", 45483412);
         }
+
         public static (int[] opcodes, int a, int b, int c) GetTrainingData()
         {
-            return (Parse("0,1,5,4,3,0"), 729, 0, 0);
+            return Parse("Data/TrainingInput.txt", 729);
         }
     }
 }

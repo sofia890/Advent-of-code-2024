@@ -134,7 +134,7 @@ void PartTwo(Matrix<char> matrix)
                                 .Distinct();
 
     FillAndPrint(matrix, visitedCells);
-    Console.WriteLine($"Part Two: Score is {visitedCells.Count()}.");
+    Console.WriteLine($"Part Two: Score is {visitedCells.Count()}.\n");
 }
 Matrix<char> GetData()
 {

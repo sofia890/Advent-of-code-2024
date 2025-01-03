@@ -98,14 +98,14 @@ void PartOne(Matrix<char> data)
     var plots = GroupCellsIntoPlots(data);
     var cost = plots.Aggregate(0, (a, b) => a + CalculateCostForPlot(b.elements));
 
-    Console.WriteLine($"Part One: Cost for fencing is {cost}.");
+    Console.WriteLine($"Part One: Cost for fencing is {cost}.\n");
 }
 void PartTwo(Matrix<char> data)
 {
     var plots = GroupCellsIntoPlots(data);
     var cost = plots.Aggregate(0, (a, b) => a + CalculateCostForPlotBulkDiscount(data, b.elements, b.type));
 
-    Console.WriteLine($"Part One: Cost when bulk discount is applied {cost}.");
+    Console.WriteLine($"Part One: Cost when bulk discount is applied {cost}.\n");
 }
 
 var data = Input.GetData();

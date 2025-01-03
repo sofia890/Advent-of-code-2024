@@ -87,7 +87,7 @@ void ParOne(TileTypes[,] area)
     (int x, int y, int direction) = GetGuardStartPosition(area);
     (_, int nrofVisitedTiles) = TraverseTiles(area, x, y, direction, GetMovementTable());
 
-    Console.WriteLine($"Part one -- Number of unique tiles visited are {nrofVisitedTiles}");
+    Console.WriteLine($"Part One: Number of unique tiles visited are {nrofVisitedTiles}.");
 }
 void PartTwo(TileTypes[,] area)
 {
@@ -139,7 +139,7 @@ void PartTwo(TileTypes[,] area)
         }
     }
 
-    Console.WriteLine($"Part two -- Number of possible loops {timeouts}");
+    Console.WriteLine($"Part Two: Number of possible loops {timeouts}.");
 }
 
 var area = Input.GetData();
